@@ -76,26 +76,32 @@ public class FrmLogin extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         btnIniciar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         barra = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Correo Electrónico");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/correo (3).png"))); // NOI18N
+        jLabel3.setText("Correo Electronico");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/contrasena.png"))); // NOI18N
         jLabel4.setText("Password");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
 
+        txtCorreo.setBackground(new java.awt.Color(204, 204, 204));
         txtCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCorreo.setBorder(null);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -103,61 +109,84 @@ public class FrmLogin extends javax.swing.JFrame {
                 txtCorreoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 250, 35));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 250, 30));
 
+        txtPass.setBackground(new java.awt.Color(204, 204, 204));
         txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPass.setBorder(null);
-        jPanel2.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 250, 35));
+        jPanel2.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 250, 30));
 
-        btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
-        btnIniciar.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setText("Login");
+        btnIniciar.setBackground(new java.awt.Color(240, 235, 225));
+        btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIniciar.setText("Iniciar Sesion");
         btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 93, 35));
+        jPanel2.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 190, 35));
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 93, 35));
-
-        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 3, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iniciar.png"))); // NOI18N
-        jLabel1.setText("Iniciar Sesión");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 110));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/usuario.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 130, 130));
 
         barra.setBackground(new java.awt.Color(255, 255, 255));
         barra.setForeground(new java.awt.Color(0, 110, 255));
-        jPanel2.add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 250, 30));
+        jPanel2.add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 250, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 430));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 310, 440));
+
+        jPanel1.setBackground(new java.awt.Color(240, 235, 225));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(80, 80, 80));
+        jLabel6.setText("Curso Integrador de Software 1");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(80, 80, 80));
+        jLabel5.setText("SISTEMA DE GESTION");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(80, 80, 80));
+        jLabel7.setText("DEL RESTAURANTE");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cocinero (1).png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(118, 118, 118))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,11 +198,6 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,12 +268,15 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barra;
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
