@@ -51,12 +51,15 @@ public class FrmLogin extends javax.swing.JFrame {
             
             lg = login.log(correo, pass);
             if (lg.getCorreo()!= null && lg.getPass() != null) {
-                barra.setVisible(true);
-                contador = -1;
-                barra.setValue(0);
-                barra.setStringPainted(true);
-                tiempo = new Timer(segundos, new BarraProgreso());
-                tiempo.start();
+//                barra.setVisible(true);
+//                contador = -1;
+//                barra.setValue(0);
+//                barra.setStringPainted(true);
+//                tiempo = new Timer(segundos, new BarraProgreso());
+//                tiempo.start();
+                Sistema sis = new Sistema(lg);
+                sis.setVisible(true);
+                dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Correo o la Contraseña incorrecta");
             }
