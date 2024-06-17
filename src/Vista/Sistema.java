@@ -60,7 +60,7 @@ public final class Sistema extends javax.swing.JFrame {
     private String subject;
     private String content;
     
-    
+    //private String content;
     private Properties mProperties;
     private Session mSession;
     private MimeMessage mCorreo;
