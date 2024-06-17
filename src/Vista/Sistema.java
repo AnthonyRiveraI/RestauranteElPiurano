@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -51,6 +53,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
 
 public final class Sistema extends javax.swing.JFrame {
     
@@ -60,7 +63,10 @@ public final class Sistema extends javax.swing.JFrame {
     private String subject;
     private String content;
     
-    //private String content;
+    
+    
+    
+    
     private Properties mProperties;
     private Session mSession;
     private MimeMessage mCorreo;
@@ -118,6 +124,8 @@ public final class Sistema extends javax.swing.JFrame {
         jTabbedPane1.setEnabled(false);
         panelSalas();
         mProperties = new Properties();
+        nombres_archivos = "";
+        
     }
 
     private void createEmail(){
@@ -126,7 +134,7 @@ public final class Sistema extends javax.swing.JFrame {
         content = txtContent.getText().trim();
         
         //Protocolo de tranferencia
-                //Protocolo de tranferencia de Correo
+       //Protocolo de tranferencia de Correo
         
         
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
@@ -141,12 +149,34 @@ public final class Sistema extends javax.swing.JFrame {
         
        
         try {
+            
+            MimeMultipart mElementosCorreo = new MimeMultipart();
+            // Contenido del correo
+            MimeBodyPart mContenido = new MimeBodyPart();
+            mContenido.setContent(content, "text/html; charset=utf-8");
+            mElementosCorreo.addBodyPart(mContenido);
+            
+            
+            //Agregar archivos adjuntos
+            MimeBodyPart mAdjuntos = null;
+            for (int i = 0; i < mArchivosAdjuntos.length; i++) {
+                mAdjuntos = new MimeBodyPart();
+                mAdjuntos.setDataHandler(new DataHandler(new FileDataSource(mArchivosAdjuntos[i].getAbsoluteFile())));
+                mAdjuntos.setFileName(mArchivosAdjuntos[i].getName());
+                mElementosCorreo.addBodyPart(mAdjuntos);
+                
+                
+            }
+            
+            
+            
             mCorreo = new MimeMessage(mSession);
             mCorreo. setFrom(new InternetAddress(emailFrom) );
             
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
             mCorreo.setSubject(subject);
-            mCorreo.setText(content, "ISO-8859-1","html");
+            mCorreo.setContent(mElementosCorreo);
+            //mCorreo.setText(content, "ISO-8859-1","html");
             //mCorreo.setText(content, "ISO-8859-1","html");
             
             
@@ -326,6 +356,8 @@ public final class Sistema extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtContent = new javax.swing.JTextArea();
         btnEditarPlato1 = new javax.swing.JButton();
+        btnAgregarArchivosAdjuntos = new javax.swing.JButton();
+        lblArchivos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panel de Adminstración");
@@ -1471,6 +1503,17 @@ public final class Sistema extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarArchivosAdjuntos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAgregarArchivosAdjuntos.setText("Agregar Archivos Adjuntos");
+        btnAgregarArchivosAdjuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarArchivosAdjuntosActionPerformed(evt);
+            }
+        });
+
+        lblArchivos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblArchivos.setText("...");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1490,32 +1533,46 @@ public final class Sistema extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtSubject, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                             .addComponent(txtTo)
-                            .addComponent(jScrollPane1)))
+                            .addComponent(jScrollPane1))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregarArchivosAdjuntos, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                            .addComponent(lblArchivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(453, 453, 453)
                         .addComponent(btnEditarPlato1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel24)
-                .addGap(71, 71, 71)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel41)
-                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel42))
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(70, 70, 70)
+                        .addComponent(btnAgregarArchivosAdjuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41)
+                            .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel42))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(btnEditarPlato1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1879,6 +1936,25 @@ public final class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubjectActionPerformed
 
+    private void btnAgregarArchivosAdjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivosAdjuntosActionPerformed
+               nombres_archivos = "";
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.setMultiSelectionEnabled(true);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        if  (chooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION){
+            mArchivosAdjuntos = chooser.getSelectedFiles();
+            
+            for(File archivo : mArchivosAdjuntos){
+                nombres_archivos += archivo.getName() + "<br>";
+                
+            }
+            lblArchivos.setText("<html><p>" + nombres_archivos + "</p></html>");
+        }
+        
+    }//GEN-LAST:event_btnAgregarArchivosAdjuntosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelVendedor;
@@ -1890,6 +1966,7 @@ public final class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizarConfig;
     private javax.swing.JButton btnActualizarSala;
     private javax.swing.JButton btnAddPlato;
+    private javax.swing.JButton btnAgregarArchivosAdjuntos;
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnEditarPlato;
     private javax.swing.JButton btnEditarPlato1;
@@ -1987,6 +2064,7 @@ public final class Sistema extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JLabel lblArchivos;
     private javax.swing.JTable tableFinalizar;
     private javax.swing.JTable tableMenu;
     private javax.swing.JTable tableSala;
